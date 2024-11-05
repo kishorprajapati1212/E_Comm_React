@@ -16,7 +16,16 @@ app.use(cors())
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-mongoose.connect("mongodb://localhost:27017/clothes")
+mongoose.connect('mongodb+srv://one1010piece1111:LSkd8pbeNd7rY1n9@cluster1.wgfrk.mongodb.net/clothes?retryWrites=true&w=majority&appName=Cluster1', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => {
+  console.log('MongoDB connected successfully');
+})
+.catch(err => {
+  console.error('MongoDB connection error:', err.message);  // Log just the error message
+});
 
 app.use(loginroute)
 app.use(productroute)
