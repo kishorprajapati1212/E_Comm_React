@@ -32,8 +32,8 @@ router.post("/checkout", async (req, res) => {
             payment_method_types: ['card'],
             line_items: productItems, // Add the mapped product items to line_items
             mode: 'payment',
-            success_url: `http://localhost:3002/payment-success?paymentId=${savepayment._id}`,  // Successful payment redirect URL
-            cancel_url: 'http://localhost:3002/placeorder', // Canceled payment redirect URL
+            success_url: `https://9000-idx-ecomcustomerp1-1730199568780.cluster-qpa6grkipzc64wfjrbr3hsdma2.cloudworkstations.dev/payment-success?paymentId=${savepayment._id}`,  // Successful payment redirect URL
+            cancel_url: 'https://9000-idx-ecomcustomerp1-1730199568780.cluster-qpa6grkipzc64wfjrbr3hsdma2.cloudworkstations.dev/placeorder', // Canceled payment redirect URL
         });
 
         res.json({ sessionId: session.id });
