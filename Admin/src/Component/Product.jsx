@@ -40,6 +40,7 @@ const Product = () => {
       ),
     },
     { field: 'cat', headerName: 'CATEGORY', flex: 1 },
+    { field: 'stock', headerName: 'STOCK', flex: 1 },
     {
       field: 'actions',
       headerName: 'ACTIONS',
@@ -81,7 +82,7 @@ const Product = () => {
   const handleDelete = async (product) => {
     const productId = product._id.toString(); // Assuming the product object has an 'id' property
     try {
-      await axios.delete(`http://localhost:1414/delete_product/${productId}`);
+      await axios.delete(`${Backend_url}/delete_product/${productId}`);
       setReloadProducts(true);
     } catch (error) {
       console.error('Error deleting product', error);

@@ -38,7 +38,7 @@ router.post('/addproduct', upload.single("model"), async (req, res) => {
     const productdetail = {
       ...req.body,
       model: req.file.filename,
-      und1: null,
+      stock: Number(req.body.stock),
       und2: null,
       und3: null,
     };
@@ -94,8 +94,9 @@ router.delete("/delete_product/:productId", async (req, res) => {
 });
 
 
-router.put("/updateproduct/:id", upload.single("model"), async (req, res) => {
+router.post("/updateproduct/:id", upload.single("model"), async (req, res) => {
   const pid = req.params.id;
+  console.log(pid);
 
   try {
     let updatedProduct = { ...req.body };

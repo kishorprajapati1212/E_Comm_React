@@ -4,7 +4,10 @@ import { Theme } from "../Theme";
 const ProgressCircle = ({ progress = "0.75", size = "40" }) => {
     const theme = useTheme();
     const colors = Theme(theme.palette.mode);
-    const angle = progress * 360;
+
+    const currentmonths = new Date().getMonth() + 1;
+    const yearprogress = currentmonths/12;
+    const angle = yearprogress  * 360;
 
     return (
         <Box sx={{

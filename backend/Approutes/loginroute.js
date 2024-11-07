@@ -2,22 +2,27 @@ const express = require('express');
 const router = express.Router();
 const adminuser = require('../Models/Clothes');
 
-router.post('/login', async(req,res) => {
-    try{
+router.post('/login', async (req, res) => {
+    try {
         const checkvalue = req.body
-        await adminuser.findOne({email: checkvalue.email})
-        .then(user => {
-            if(user) {
-                if(user.pass === checkvalue.pass){
-                    res.json("Success");
-                }else{
-                    res.json("Increct Information")
+        await adminuser.findOne({ email: checkvalue.email })
+            .then(user => {
+                if (user) {
+                    if (user.pass === checkvalue.pass) {
+                        res.json({
+                            message: "Success",
+                            adminName: user.fname,
+                            email: user.email,
+                            access: user.access
+                        });
+                    } else {
+                        res.json("Increct Information")
+                    }
+                } else {
+                    res.json("Invalid Information")
                 }
-            }else{
-                res.json("Invalid Information")
-            }
-        })
-    }catch{
+            })
+    } catch {
         res.json("Internal Error")
     }
 })
@@ -51,13 +56,26 @@ router.post('/signin', async (req, res) => {
 });
 
 
-router.get("/adminuser", async (req,res) => {
+router.get("/adminuser", async (req, res) => {
     try {
         const alldata = await adminuser.find();
         res.json(alldata);
-    } catch (error){
-        res.status(500).json({error: error.message})
-        
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+
+    }
+});
+
+router.get("/deleteAdmin/:adminid", async (req, res) => {
+    try {
+        const adminid = req.params.adminid;
+        console.log(adminid);
+
+        const deletadmin = await adminuser.findByIdAndDelete(adminid);
+        res.json(deletadmin);
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+
     }
 })
 module.exports = router;

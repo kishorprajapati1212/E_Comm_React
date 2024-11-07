@@ -1,11 +1,11 @@
-import { ResponsiveLine } from '@nivo/line'
+import { ResponsiveLine } from '@nivo/line';
 import { Theme } from "../Theme";
-import { mockLineData as data } from "../Data/data";
 import { useTheme } from "@mui/material";
 
-const Linechart = ({ isCustomLineColors = false, isDashboard = false }) => {
+const Linechart = ({ data, isCustomLineStyles = false, isDashboard = false }) => {
     const theme = useTheme();
     const colors = Theme(theme.palette.mode);
+
     return (
         <ResponsiveLine
             data={data}
@@ -42,14 +42,14 @@ const Linechart = ({ isCustomLineColors = false, isDashboard = false }) => {
                     },
                 },
             }}
-            colors={isDashboard ? { datum: "color" } : { scheme: "nivo" }} // added
+            colors={isDashboard ? { datum: "color" } : { scheme: "nivo" }}
             margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
             xScale={{ type: "point" }}
             yScale={{
                 type: "linear",
-                min: "auto",
+                min: 0,
                 max: "auto",
-                stacked: true,
+                stacked: false,  // Ensure it's not stacked if you don't want cumulative totals
                 reverse: false,
             }}
             yFormat=" >-.2f"
@@ -61,17 +61,17 @@ const Linechart = ({ isCustomLineColors = false, isDashboard = false }) => {
                 tickSize: 0,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: isDashboard ? undefined : "transportation", // added
+                legend: isDashboard ? undefined : "Month",
                 legendOffset: 36,
                 legendPosition: "middle",
             }}
             axisLeft={{
                 orient: "left",
-                tickValues: 5, // added
+                tickValues: 5,
                 tickSize: 3,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: isDashboard ? undefined : "count", // added
+                legend: isDashboard ? undefined : "Total Sales",
                 legendOffset: -40,
                 legendPosition: "middle",
             }}
@@ -110,8 +110,7 @@ const Linechart = ({ isCustomLineColors = false, isDashboard = false }) => {
                 },
             ]}
         />
-    )
-
-}
+    );
+};
 
 export default Linechart;

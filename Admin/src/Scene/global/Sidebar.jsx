@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { Link as RouterLink } from 'react-router-dom';
@@ -45,6 +45,13 @@ const Sidebar = () => {
   const colors = Theme(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setselected] = useState("Dashboard");
+  const [adminName, setAdminName] = useState("");
+
+  useEffect(() => {
+    // Retrieve the admin's name from localStorage
+    const storedAdminName = localStorage.getItem('adminName');
+    if (storedAdminName) setAdminName(storedAdminName);
+  }, []);
 
   return (
     <Box
@@ -93,12 +100,12 @@ const Sidebar = () => {
             <Box mb="25px">
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
-                  alt="profile-user" width="100px" height="100px" src={`../../asstes/user.png`} style={{ cursor: "pointer", borderRadius: "50%" }}
+                  alt="profile-user" width="100px" height="100px" src="/profile.jpeg" style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
               <Box textAlign="center">
                 <Typography variant="h2" color={colors.grey[100]} fontWeight="bold" sx={{ m: "10px 0 0 0" }}>
-                  Ed Roh
+                  {adminName || ""}
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
                   VP Fancy Admin

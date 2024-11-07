@@ -7,7 +7,7 @@ const userloginSchema = new mongoose.Schema({
     access: String,
     und2: String,
     und3: String,
-})
+},{timestamps: true})
 
 const userloginModel = mongoose.model('adduser',userloginSchema);
 module.exports = userloginModel;

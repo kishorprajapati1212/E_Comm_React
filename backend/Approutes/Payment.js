@@ -60,9 +60,18 @@ router.get("/fetchpayment", async (req, res) => {
         // Return the payment details as a JSON response
         return res.json(getpaymentdetail);
     } catch (error) {
-
+        res.status(500).json({ error: 'Internal server error' });
     }
 
+})
+
+router.get("/getallpayment", async(req,res) =>{
+    try {
+        const getallpayment = await Payment.find();
+        return res.json(getallpayment);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
 })
 
 module.exports = router;

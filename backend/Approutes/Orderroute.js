@@ -19,7 +19,7 @@ router.post("/addorder", async (req, res) => {
     const orders = [];
 
     const existingOrder = await ordermodel.findOne({
-      paymentId: paymentId 
+      paymentId: paymentId
     });
 
     if (existingOrder) {
@@ -40,7 +40,7 @@ router.post("/addorder", async (req, res) => {
       };
 
       const order = {
-        paymentId:paymentId,
+        paymentId: paymentId,
         charges: orderData.charges,
         userid: orderData.product.userid,
         fname: orderData.formdata.fname,
@@ -115,15 +115,17 @@ router.get("/getAllorders", async (req, res) => {
 })
 
 
-router.put("/updateorder/:orderid", async (req, res) => {
+router.post("/updateorder/:orderid", async (req, res) => {
   try {
     const orderidparam = req.params.orderid;
-    const { payment_status, order_status } = req.body;
+    const { order_status } = req.body;
+    console.log(orderidparam)
+    console.log(order_status)
 
     // Find and update the order in the database
     const updatedOrder = await ordermodel.findOneAndUpdate(
       { 'orderItems.0.orderid': orderidparam }, // Assuming orderid is inside the first item of orderItems array
-      { $set: { payment_status, order_status } },
+      { $set: { order_status } },
       { new: true } // This ensures that the updated document is returned
     );
 
@@ -137,6 +139,29 @@ router.put("/updateorder/:orderid", async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
+router.get("/getallemail", async (req, res) => {
+  try {
+    // Get the current date
+    const currentDate = new Date();
+
+    // Calculate the start of the previous day
+    const previousDayStart = new Date();
+    previousDayStart.setDate(currentDate.getDate() - 1);
+    previousDayStart.setHours(0, 0, 0, 0); // Start of previous day at 00:00:00
+
+    // Filter orders between previous day start and now
+    const recentOrders = await ordermodel.find({
+      order_status: { $exists: true }, // Assuming you want all orders with an order_status
+      time: { $gte: previousDayStart, $lt: currentDate }
+    });
+
+    res.json({ orders: recentOrders });
+  } catch (error) {
+    console.error("Error fetching recent orders:", error);
+    res.status(500).json({ message: "Server Error" });
+  }
+})
 
 
 module.exports = router;
