@@ -40,31 +40,45 @@ router.get("/cartlist/:userid", async (req, res) => {
     const useridparams = req.params.userid;
     try {
         const cartItems = await cartmodel.find({ userid: useridparams });
+        // console.log("cartItems", cartItems);
 
         if (!cartItems || cartItems.length === 0) {
             return res.status(404).json({ message: "No cart items found for the user" });
         }
 
         const productDetailPromises = cartItems.map(async (cartItem) => {
-            const product = await productmodel.findById(cartItem.productid);
-            product.img1 = `data:image/png;base64, ${product.img1}`;
-
-            return product;
+            try {
+                const product = await productmodel.findById(cartItem.productid);
+                if (product) {
+                    product.img1 = `data:image/png;base64, ${product.img1}`;
+                    return product;
+                } else {
+                    // Return null if the product was deleted
+                    return null;
+                }
+            } catch (error) {
+                console.log(`Product not found for ID: ${cartItem.productid}`);
+                return null; // Skip if there's an error or if product not found
+            }
         });
 
-        // Wait for all product details promises to resolve
-        const productDetails = await Promise.all(productDetailPromises);
+        // Wait for all product details promises to resolve, and filter out null values
+        const productDetails = (await Promise.all(productDetailPromises)).filter(
+            (product) => product !== null
+        );
 
         const response = {
             cartItems: cartItems,
             products: productDetails,
         };
 
+        console.log("Response", response);
         res.status(200).json(response);
     } catch (error) {
         res.status(500).json({ message: "Please try Again Later", error });
     }
 });
+
 
 router.post("/deleteitem/:userid/:productid", async (req, res) => {
     try {

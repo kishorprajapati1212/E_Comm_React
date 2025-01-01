@@ -4,11 +4,13 @@ const Invoicemodel = require("../Models/Invoice");
 
 router.post("/addinvoice", async (req, res) => {
     try {
+        // console.log("Hello oooooooooooooooooooooo")
         const invoicevalue = req.body;
+        // console.log(invoicevalue)
         const Checkinvoice = await Invoicemodel.findOne({ paymentId: invoicevalue._id });
         // console.log(Checkinvoice)
 
-        if (!Checkinvoice) {
+        if (Checkinvoice) {
             return res.json("Duplicate")
         }
 
@@ -41,11 +43,11 @@ router.get("/getallinvoice", async(req,res) =>{
 router.get("/getInvoice", async(req,res) =>{
     try {
         paymentId =  req.query.paymentId
-        // console.log(paymentId);
+        console.log(paymentId);
 
         const oneInvoice = await Invoicemodel.findOne({paymentId: paymentId});
         
-        // console.log(oneInvoice)
+        console.log(oneInvoice)
         if(oneInvoice){
             return res.json(oneInvoice);
         }
