@@ -6,19 +6,13 @@ import { Link } from 'react-router-dom';
 const Category = () => {
     const clothingData = [
         { id: 1, name: "shirt", src: "Texture/p1.jpg" },
-        { id: 2, name: "Jeans", src: "Texture/p2.jpg" },
-        { id: 3, name: "Pants", src: "Texture/p3.jpg" },
-        { id: 4, name: 'Other', src: "Texture/p3.jpg" },
-        { id: 5, name: 'Hat', src: "Texture/p3.jpg" },
-        { id: 6, name: 'Jacket', src: "Texture/p3.jpg" },
-        { id: 7, name: 'Socks', src: "Texture/p3.jpg" },
-        { id: 8, name: 'Shorts', src: "Texture/p3.jpg" },
-        { id: 9, name: 'Skirt', src: "Texture/p3.jpg" },
-        { id: 10, name: 'Sweater', src: "Texture/p3.jpg" },
+        { id: 2, name: "T-Shirt", src: "Texture/p2.jpg" },
+        { id: 3, name: "Jeans", src: "Texture/p2.jpg" },
+        { id: 4, name: "Pants", src: "Texture/p3.jpg" },
     ]
 
     const clothslice = clothingData.slice(0, window.innerWidth < 800 ? 5 : 10);
-    // console.log(clothslice)
+    console.log(clothslice)
     return (
         <div style={{ overflowX: "auto" }}>
             <Container sx={{ height: "10vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", padding: 9 }}>

@@ -1,123 +1,132 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Card, CardContent, CardMedia, Typography, Grid, Grow, Container } from '@mui/material';
+import { Card, CardContent, CardMedia, Typography, Grid, Grow, Container, Box } from '@mui/material';
 import { Productskeleten } from '../Component/Loading/Skeletenloadning';
 import { Theme } from '../Theme';
 import { useTheme } from '@emotion/react';
 
 const Product = () => {
-  const Backend_url =  import.meta.env.VITE_REACT_BACKEND_URL 
+  const Backend_url = import.meta.env.VITE_REACT_BACKEND_URL;
 
   const theme = useTheme();
   const colors = Theme(theme.palette.mode);
   const { cat } = useParams();
   const [products, setProducts] = useState([]);
-  const [loading, setloading] = useState(true);
-  const [columns] = useState(3); // Initial value for the number of columns
+  const [loading, setLoading] = useState(true);
+  const [columns] = useState(3);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // const res = await axios.get(`http://localhost:1415/category/${cat}`);
-        const res = await axios.get(`${Backend_url}/product`);
+        const res = await axios.get(`${Backend_url}/category/${cat}`);
         setProducts(res.data);
-        setloading(false)
+        setLoading(false);
       } catch (error) {
         console.error("Error in fetching products", error);
-        setloading(false)
+        setLoading(false);
       }
     };
 
     fetchProducts();
   }, [cat]);
 
-  // Group products into sets based on the number of columns
   const productSets = [];
   for (let i = 0; i < products.length; i += columns) {
     productSets.push(products.slice(i, i + columns));
   }
 
-
   return (
-    <Container>
-      {loading ? <Productskeleten /> : ""}
-      <Grid container spacing={2} justifyContent="center" style={{ padding: '20px' }}>
-        <Grid item xs={12} sm={9}>
-          {productSets.map((set, index) => (
-            <Grid container spacing={2} key={index} style={{ marginBottom: '30px' }}>
-              {loading ? (
-                // Render ProductSkeletonLoading component when loading
-                Array.from({ length: 10 }).map((_, cardIndex) => (
-                  <Grid item xs={12 / columns} sm={12 / (columns / 2)} md={12 / columns} key={cardIndex}>
-                    <Productskeleten />
-                  </Grid>
-                ))
-              ) : (
-                <>
-                  {set.map((product) => (
-                    // Conditionally render Grow only when loading is false
-                    !loading && (
-                      <Grow key={product._id} in={true} timeout={100}>
-                        <Grid item xs={12 / columns} sm={12 / (columns / 2)} md={12 / columns}>
-                          <Link to={`/viewproduct/${product._id}`} style={{ textDecoration: 'none' }}>
-                            {/* Adjust the column widths based on the number of columns */}
-                            <Card
-                              sx={{
-                                backgroundColor: colors.primary[6000],
-                                width: '100%',
-                                height: '100%',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'space-between',
-                                borderRadius: 5,
-                                transition: 'transform 0.3s, box-shadow 0.3s',
-                                cursor: 'pointer',
-                                '&:hover': {
-                                  transform: 'scale(1.05)',
-                                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
-                                  backgroundColor: colors.primary[8000],
-                                },
-                              }}
-                            >
-                              <CardMedia
-                                component="img"
-                                height="200"
-                                image={product.img1}
-                                alt={product.name}
-                                sx={{
-                                  objectFit: 'cover',
-                                  borderRadius: '5px 5px 0 0',
-                                  transition: 'transform 0.3s',
-                                  '&:hover': {
-                                    transform: 'scale(1.1)',
-                                    opacity: 0.8,
-                                  },
-                                }}
-                              />
-                              <CardContent>
-                                <Typography variant="h6" fontWeight="bold" sx={{ mb: 1 }}>
-                                  {product.product_name}
-                                </Typography>
-                                <Typography variant="body2" color="textSecondary">
-                                  {product.description}
-                                </Typography>
-                              </CardContent>
-                            </Card>
-                          </Link>
-                        </Grid>
-                      </Grow>
-                    )
-                  ))}
-                </>
-              )}
+    <Container sx={{ paddingY: 6 }}>
+      <Typography
+        variant="h3"
+        fontWeight="700"
+        sx={{
+          fontWeight:"600",
+          fontSize:"30px",
+          textAlign: 'center',
+          marginBottom: 6,
+          color: colors.primary[100],
+          textTransform: 'capitalize',
+          fontFamily: "'Playfair Display', serif",
+          letterSpacing: '1px',
+          textShadow: '2px 2px 5px rgba(0, 0, 0, 0.2)',
+        }}
+      >
+        {cat ? `${cat} Collection` : 'Our Products'}
+      </Typography>
+
+      {loading ? (
+        <Grid container spacing={4}>
+          {Array.from({ length: columns * 2 }).map((_, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Productskeleten />
             </Grid>
           ))}
         </Grid>
-      </Grid>
+      ) : (
+        <Grid container spacing={4}>
+          {products.map((product) => (
+            <Grow key={product._id} in timeout={500}>
+              <Grid item xs={12} sm={6} md={4}>
+                <Link to={`/viewproduct/${product._id}`} style={{ textDecoration: 'none' }}>
+                  <Card
+                    sx={{
+                      backgroundColor: colors.primary[6000],
+                      borderRadius: 3,
+                      overflow: 'hidden',
+                      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                      '&:hover': {
+                        transform: 'translateY(-8px)',
+                        boxShadow: '0 12px 24px rgba(0, 0, 0, 0.15)',
+                      },
+                    }}
+                  >
+                    <CardMedia
+                      component="img"
+                      height="250"
+                      image={product.img1}
+                      alt={product.product_name}
+                      sx={{
+                        objectFit: 'cover',
+                        transition: 'transform 0.3s ease',
+                        '&:hover': { transform: 'scale(1.1)' },
+                      }}
+                    />
+                    <CardContent
+                      sx={{
+                        padding: 3,
+                        backgroundColor: colors.primary[6000],
+                        color: colors.grey[100],
+                      }}
+                    >
+                      <Typography variant="h6" fontWeight="bold" gutterBottom>
+                        {product.product_name}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        sx={{
+                          display: '-webkit-box',
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: 'vertical',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        {product.description}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </Grid>
+            </Grow>
+          ))}
+        </Grid>
+      )}
     </Container>
   );
-
 };
 
 export default Product;

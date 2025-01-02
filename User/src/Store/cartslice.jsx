@@ -6,7 +6,7 @@ export const cartadd = createAsyncThunk("user/cartadd", async ({userid, producti
     try {
         const Backend_url =  import.meta.env.VITE_REACT_BACKEND_URL 
 
-        // console.log(productid)
+        console.log(productid)
         const cart = await axios.post(`${Backend_url}/addtocart`, { userid, productid })
         return cart.data
     } catch (error) {
@@ -18,7 +18,7 @@ export const cartlist = createAsyncThunk("user/cartlist", async({userid}) => {
     try {
         const Backend_url =  import.meta.env.VITE_REACT_BACKEND_URL 
 
-        // console.log(userid)
+        console.log(userid)
         const res = await axios.get(`${Backend_url}/cartlist/${userid}`)
         return res.data
     } catch (error) {
