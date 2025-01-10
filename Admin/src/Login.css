@@ -97,9 +97,9 @@ input::placeholder {
   color: #EF3B3A;
 }
 .back {
-  background: #2e3a27; /* fallback for old browsers */
-  background: rgb(43, 51, 39);
-  background: linear-gradient(90deg, #4e4c41 0%,  #000000 40%);
+  /* background: #2e3a27; fallback for old browsers */
+  /* background: rgb(43, 51, 39);
+  background: linear-gradient(90deg, #4e4c41 0%,  #000000 40%); */
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;     

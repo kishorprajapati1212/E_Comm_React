@@ -68,6 +68,7 @@ const Team = () => {
                 return (
                     <Box width="60%" m="0 auto" p="5px" display="flex" justifyContent="center"
                         backgroundColor={colors.redAccent[600]}
+                        cursor="pointer"
                         borderRadius="4px" sx={{ ml: "1%" }}
                         onClick={() => handleDelete(row)} >
                         <DeleteOutlinedIcon />

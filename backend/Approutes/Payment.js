@@ -19,7 +19,7 @@ router.post("/checkout", async (req, res) => {
         // Mapping over the orderproduct array to create Stripe line items
         const productItems = orderproduct.map((item) => ({
             price_data: {
-                currency: 'usd', // Set currency to INR
+                currency: 'inr', // Set currency to INR
                 product_data: {
                     name: item.product_name, // Name of the product
                     description: `Product ID: ${item.productid}`, // Optional: Add more details like product ID
@@ -35,6 +35,12 @@ router.post("/checkout", async (req, res) => {
             mode: 'payment',
             success_url: `${url}/payment-success?paymentId=${savepayment._id}`,  // Successful payment redirect URL
             cancel_url: `${url}/placeorder`, // Canceled payment redirect URL
+            billing_address_collection: 'required', // Collect billing address
+            shipping_address_collection: { allowed_countries: ['IN'] }, // Restrict shipping to India
+            metadata: {
+                customerName: "Jhon Dev", // Add customer's name
+                customerAddress: "1234", // Add customer's address
+            },
         });
 
         res.json({ sessionId: session.id });

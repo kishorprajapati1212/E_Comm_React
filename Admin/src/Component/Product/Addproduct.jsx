@@ -99,8 +99,8 @@ export const Addproduct = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="productPrice" className="form-label">Price:</label>
-          <input type="number" id="productPrice" name="stock" value={product.stock} onChange={handleInput} className="form-control" />
+          <label htmlFor="productStock" className="form-label">Stock:</label>
+          <input type="number" id="productStock" name="stock" value={product.stock} onChange={handleInput} className="form-control" />
         </div>
 
         {/* 3D Model */}

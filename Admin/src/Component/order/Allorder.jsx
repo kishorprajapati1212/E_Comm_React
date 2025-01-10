@@ -83,7 +83,7 @@ const Allorder = () => {
                     <UpgradeOutlinedIcon
                         style={{ cursor: 'pointer', marginRight: '10px', fontSize: '30px', color: colors.greenAccent[500] }}
                         onClick={() => handleUpdate(params.row)}
-                    />
+                    />UPDATE
                 </div>
             ),
         },
@@ -208,10 +208,9 @@ const Allorder = () => {
                             top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
                         }}>
                             <h2>{`Update Order: ${selectedOrder.orderId}`}</h2>
-                            <p>{`Product ID: ${selectedOrder.productId}`}</p>
                             
                             {/* Order Status Radio Group */}
-                            <Typography>ORDER_STATUS</Typography>
+                            <Typography variant="h5">ORDER_STATUS</Typography>
                             <RadioGroup
                                 aria-label="order-status"
                                 name="order_status"

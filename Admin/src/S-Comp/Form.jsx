@@ -50,10 +50,10 @@ const Form1 = () => {
                     mt: "20px",
                     p: "20px",
                     borderRadius: "8px",
-                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+                    boxShadow: "0 40px 120px rgba(0, 0, 0, 0.1)",
                     maxWidth: "400px",
                     mx: "auto",
-                    bgcolor: colors.primary[500]
+                    bgcolor: colors.primary[400]
                 }}
             >
                 <Typography variant="h5" color={colors.greenAccent[500]} textAlign="center">

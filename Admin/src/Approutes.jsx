@@ -10,7 +10,7 @@ import Contacts from './S-Comp/Contacts';
 import Invoice from './S-Comp/Invoice';
 import Form1 from './S-Comp/Form';
 import Calendar from './S-Comp/Calender';
-import Faq from './S-Comp/Faq';
+import Faq from './S-Comp/Faq'; 
 import Bar from './S-Comp/bar';
 import Pie from './S-Comp/Pie';
 import Line from './S-Comp/Line';
@@ -44,9 +44,14 @@ const Approutes = () => {
       <Route path='/admin/faq' element={isadminlogin ? (<Faq />) : (<Navigate to="/login" />)} />
 
       {/* PRODUCT PAGES*/}
-      <Route path='/admin/product' element={isadminlogin ? (<Product />) : (<Navigate to="/login" />)} />
+      {/* <Route path='/admin/product' element={isadminlogin ? (<Product />) : (<Navigate to="/login" />)} />
       <Route path='/admin/product/addproduct' element={isadminlogin ? (<Addproduct />) : (<Navigate to="/login" />)} />
-      <Route path='/admin/allorder' element={isadminlogin ? (<Allorder />) : (<Navigate to="/login" />)} />
+      <Route path='/admin/allorder' element={isadminlogin ? (<Allorder />) : (<Navigate to="/login" />)} /> */}
+
+       <Route path='/admin/product' element={<Product />} />
+      <Route path='/admin/product/addproduct' element={<Addproduct />} />
+      <Route path='/admin/allorder' element={<Allorder />} />
+      
       {/* <Route path='/admin/allorder' element={<Allorder />} /> */}
 
 

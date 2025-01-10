@@ -8,6 +8,7 @@ export const Sign = () => {
     
     const [formvalue, setformvalue] = useState({fname:'',email:'',pass:''});
     const navigate = useNavigate();
+    console.log("this is the signin of the admin ")
 
     const handelinput = (e) =>{
         setformvalue({ ...formvalue, [e.target.name]:   e.target.value});

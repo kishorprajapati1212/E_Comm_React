@@ -16,8 +16,8 @@ export const fetchOrder = async () => {
             .reduce((acc, order) => acc + order.orderItems[0].withcharges, 0);
 
         return totalRevenue;
-        // console.log("Total Revenue:", revenue);
-        // console.log(res.data);
+        console.log("Total Revenue:", revenue);
+        console.log(res.data);
     } catch (error) {
         console.error("Error fetching orders:", error);
     }
@@ -32,14 +32,12 @@ const Campaign = () => {
     useEffect(() => {
         const getrevenue = async() =>{
             const totalrevenue = await fetchOrder();
+            // console.log(totalrevenue)
             setRevenue(totalrevenue) 
-
         }
         getrevenue()
-
-        
     }, []);
-
+// console.log(revenue)
     return (
         <>
             <Typography variant="h5" fontWeight="600">

@@ -62,7 +62,7 @@ const Updateproduct = ({ selectedproduct, close, open, onProductUpdated }) => {
       formData.append('stock', product.stock);
       formData.append('cat', product.cat);
       formData.append('sale_cat', product.sale_cat);
-  
+      console.log(product)
       const response = await axios.post(`${Backend_url}/updateproduct/${selectedproduct._id}`, formData);
       console.log(response.data);
       onProductUpdated();
@@ -210,7 +210,7 @@ const Updateproduct = ({ selectedproduct, close, open, onProductUpdated }) => {
                 {product.img1 && (
                   <img
                     src={product.img1}
-                    alt={`${product.product_name}`}
+                    alt={`NEW IMAGE UPDATED`}
                     style={{ width: '25%', height: 'auto', borderRadius: '8px', marginLeft: "300px", border: "2px solid black" }}
                   />
                 )}

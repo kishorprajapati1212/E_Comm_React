@@ -152,6 +152,12 @@ const Product = () => {
               className="datagrid-container"
               headerClassName="datagrid-header"
               cellClassName="datagrid-cell"
+              rowHeight={60} 
+              sx={{
+                "& .MuiDataGrid-row": {
+                  marginBottom: "5px", 
+                },
+              }}
             />
           ) : (
             <h1>Loading...</h1>
