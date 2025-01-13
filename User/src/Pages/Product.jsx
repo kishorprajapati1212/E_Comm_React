@@ -42,8 +42,8 @@ const Product = () => {
         variant="h3"
         fontWeight="700"
         sx={{
-          fontWeight:"600",
-          fontSize:"30px",
+          fontWeight: "600",
+          fontSize: "30px",
           textAlign: 'center',
           marginBottom: 6,
           color: colors.primary[100],
@@ -64,6 +64,32 @@ const Product = () => {
             </Grid>
           ))}
         </Grid>
+      ) : products.length === 0 ? (
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '80vh',
+            textAlign: 'center',
+            backgroundColor: colors.primary[6000],
+            borderRadius: 3,
+            boxShadow: 3,
+          }}
+        >
+          <Typography
+            variant="h4"
+            fontWeight="600"
+            sx={{
+              color: colors.grey[100],
+              fontFamily: "'Playfair Display', serif",
+              letterSpacing: '1px',
+              fontSize: '1.5rem',
+            }}
+          >
+            No products available in this category.
+          </Typography>
+        </Box>
       ) : (
         <Grid container spacing={4}>
           {products.map((product) => (
@@ -77,8 +103,9 @@ const Product = () => {
                       overflow: 'hidden',
                       transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                       '&:hover': {
-                        transform: 'translateY(-8px)',
-                        boxShadow: '0 12px 24px rgba(0, 0, 0, 0.15)',
+                        transform: 'scale(1.05)',
+                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+                        // boxShadow: '0 12px 24px rgba(0, 0, 0, 0.15)',
                       },
                     }}
                   >
@@ -90,7 +117,10 @@ const Product = () => {
                       sx={{
                         objectFit: 'cover',
                         transition: 'transform 0.3s ease',
-                        '&:hover': { transform: 'scale(1.1)' },
+                        '&:hover': {
+                          transform: 'scale(1.1)',
+                          opacity: 0.8,
+                        },
                       }}
                     />
                     <CardContent

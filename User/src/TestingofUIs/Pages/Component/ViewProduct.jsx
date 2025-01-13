@@ -64,30 +64,7 @@ const ViewProduct = () => {
         {products.map((product) => (
           <SwiperSlide key={product._id}>
             <Link to={`/viewproduct/${product._id}`} style={{ textDecoration: 'none', color: 'white' }}>
-              <img src={product.img1} alt={product.product_name} />
-              <div className="product-info" style={{ color: colors.grey[100] }}>
-                <h3 style={{ fontSize: '25px' }}>{product.product_name}</h3>
-                <p style={{ fontSize: '15px' }}>{product.desc.length > 100 ? `${product.desc.slice(0, 70)}...` : product.desc}</p>
-              </div>
-            </Link>
-          </SwiperSlide>
-        ))}
-
-{products.map((product) => (
-          <SwiperSlide key={product._id}>
-            <Link to={`/viewproduct/${product._id}`} style={{ textDecoration: 'none', color: 'white' }}>
-              <img src={product.img1} alt={product.product_name} />
-              <div className="product-info" style={{ color: colors.grey[100] }}>
-                <h3 style={{ fontSize: '25px' }}>{product.product_name}</h3>
-                <p style={{ fontSize: '15px' }}>{product.desc.length > 100 ? `${product.desc.slice(0, 70)}...` : product.desc}</p>
-              </div>
-            </Link>
-          </SwiperSlide>
-        ))}
-         {products.map((product) => (
-          <SwiperSlide key={product._id}>
-            <Link to={`/viewproduct/${product._id}`} style={{ textDecoration: 'none', color: 'white' }}>
-              <img src={product.img1} alt={product.product_name} />
+              <img src={product.img1} alt={product.product_name} style={{boxShadow:"0 8px 24px rgba(0, 0, 0, 0.15)"}}/>
               <div className="product-info" style={{ color: colors.grey[100] }}>
                 <h3 style={{ fontSize: '25px' }}>{product.product_name}</h3>
                 <p style={{ fontSize: '15px' }}>{product.desc.length > 100 ? `${product.desc.slice(0, 70)}...` : product.desc}</p>

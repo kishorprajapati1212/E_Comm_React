@@ -66,13 +66,14 @@ const InteractivePortal = () => {
 
   return (
     <>
-      <ambientLight intensity={0.8} />
+      <ambientLight intensity={0.8} castShadow/>
       <Environment preset="sunset" />
       <CameraControls 
         ref={controlRef} 
         maxPolarAngle={Math.PI / 2} 
         minPolarAngle={Math.PI / 4}  
         enableZoom={false} 
+        // dollySpeed={0}
       />
 
       {/* Portal Structure */}
@@ -126,7 +127,7 @@ const PortalContent = ({ hovered }) => {
 
   return (
     <Text fontSize={0.5} position={[0, 0, 0.2]} color={color} anchorY="middle">
-      Welcome to the Portal
+      Welcome to the Portal 
     </Text>
   );
 };

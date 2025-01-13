@@ -2,19 +2,27 @@ import React, {  useRef } from "react";
 import {  useFBX } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 
-export function Model3() {
-    const fbxModel = useFBX("/Model/Waving.fbx");
+export function Model3({ hovered, ...props }) {
+    const fbxModel = useFBX("/Model/test3.fbx");
     const group = useRef();
 
     useFrame(() => {
         if (group.current) {
-            // Rotate the model around the Y-axis
-            group.current.rotation.y += 0.01; // Adjust the speed as needed
+            if (!hovered) {
+                group.current.rotation.y += 0.01; // Adjust the speed as needed
+              }else{
+                group.current.rotation.y += 0.01; // Adjust the speed as needed
+              }
+
         }
     });
 
-    return fbxModel ? <group ref={group}><primitive object={fbxModel} scale={10} /></group> : null;
+    return fbxModel ? (
+        <group ref={group} >
+            <primitive object={fbxModel} scale={2} />
+        </group>
+    ) : null;
 }
 
 
-useFBX.preload("/Model/Waving.fbx");
+useFBX.preload("/Model/test3.fbx");

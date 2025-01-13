@@ -9,6 +9,7 @@ const Cartroute = require("./Approutes/Cartroute");
 const Orderroute = require("./Approutes/Orderroute");
 const Paymentroute = require("./Approutes/Payment");
 const invoiceroute = require("./Approutes/Invoiceroute")
+const forgotpass = require("./Approutes/Forgotpass")
 
 const app = express(); 
 // app.use(express.json())
@@ -50,6 +51,7 @@ app.use(Cartroute)
 app.use(Orderroute)
 app.use(Paymentroute)
 app.use(invoiceroute)
+app.use(forgotpass)
 
 app.listen(1414, () =>{
     console.log("Backend is in Action fro the Admin")

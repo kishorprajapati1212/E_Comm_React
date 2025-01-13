@@ -17,6 +17,7 @@ import App from './App'
 import THome from './TestingofUIs/Pages/THome'
 import SearchedPrduct from './Pages/SearchedPrduct'
 import PaymentSuccess from './Pages/PaymentSuccess'
+import Forgot from './Pages/Forgot'
 
 const Approute = () => {
     const [user, setuser] = useState(getuser())
@@ -32,6 +33,7 @@ const Approute = () => {
             <Route path="/category/:cat" element={ <Product />} />
             <Route path="/login" element={ <Login />} />
             <Route path="/signin" element={ <Signin />} />
+            <Route path="/forgot_password" element={ <Forgot />} />
             {/* <Route path="/viewproduct/:productid" element={ <Viewproduct />} /> */}
             <Route path="/viewproduct/:productid" element={ <Viewproducttest />} />
 

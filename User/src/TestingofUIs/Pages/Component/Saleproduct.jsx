@@ -3,6 +3,7 @@ import { OrbitControls, Environment, useTexture, MeshPortalMaterial, RoundedBox,
 import * as THREE from 'three';
 import { Model1 } from './Model1';
 import { Model2 } from './Model2';
+import { Model3 } from './Model3';
 import { useFrame, useThree } from '@react-three/fiber';
 import { easing } from "maath";
 
@@ -17,6 +18,7 @@ const Saleproduct = () => {
   const TEXTURE_PATHS = {
     model1: "/Texture/p1.jpg", // Adjust this path as necessary
     model2: "/Texture/p2.jpg", // Adjust this path as necessary
+    model3: "/Texture/p3.jpg", // Adjust this path as necessary
   };
 
   useEffect(() => {
@@ -42,21 +44,25 @@ const Saleproduct = () => {
 
   return (
     <>
+      {/* <OrbitControls enableZoom={false} /> */}
+
       <ambientLight intensity={0.9} />
       <Environment preset="sunset" />
-      <CameraControls ref={controlRef} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 6} enableZoom={true} 
-          minDistance={3} 
-          maxDistance={10} />
+      <CameraControls ref={controlRef} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 6}
+        minDistance={3}
+        maxDistance={10} 
+        />
+
 
       <ReflectiveSurface />
 
-      <ClothStages 
+      <ClothStages
         texture={TEXTURE_PATHS.model1} // Using the variable for texture path
-        name="model1" 
-        color="#df8d53" 
-        active={active} 
+        name="model1"
+        color="#df8d53"
+        active={active}
         setActive={setActive}
-        hovered={hovered} 
+        hovered={hovered}
         setHovered={setHovered}
       >
         <Suspense fallback={null}>
@@ -64,21 +70,37 @@ const Saleproduct = () => {
         </Suspense>
       </ClothStages>
 
-      <ClothStages 
+      <ClothStages
         texture={TEXTURE_PATHS.model2} // Using the variable for texture path
-        name="model2" 
-        color="#df8d53" 
-        position-x={-2.5} 
+        name="model2"
+        color="#df8d53"
+        position-x={-2.5}
         rotation-y={Math.PI / 8}
-        active={active} 
-        setActive={setActive} 
-        hovered={hovered} 
+        active={active}
+        setActive={setActive}
+        hovered={hovered}
         setHovered={setHovered}
       >
         <Suspense fallback={null}>
           <Model2 hovered={hovered === "model2"} />
         </Suspense>
       </ClothStages>
+
+      {/* <ClothStages 
+        texture={TEXTURE_PATHS.model3} // Using the variable for texture path
+        name="model3" 
+        color="#df8d53" 
+        position-x={2.5} 
+        rotation-y={Math.PI / -8}
+        active={active} 
+        setActive={setActive} 
+        hovered={hovered} 
+        setHovered={setHovered}
+      >
+        <Suspense fallback={null}>
+          <Model3 hovered={hovered === "model3"} />
+        </Suspense>
+      </ClothStages> */}
     </>
   );
 };
@@ -101,7 +123,7 @@ const ClothStages = ({ children, name, texture, color, active, setActive, hovere
         <meshBasicMaterial color={color} toneMapped={false} />
       </Text>
       <RoundedBox
-        args={[2, 3, 0.1]} 
+        args={[2, 3, 0.1]}
         name={name}
         onDoubleClick={() => setActive(active === name ? null : name)}
         onPointerEnter={() => setHovered(name)}

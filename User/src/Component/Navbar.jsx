@@ -51,10 +51,10 @@ const Navbar = () => {
 
   return (
     <>
-      <Box display="flex" alignItems="center" justifyContent="space-between" p={2} position="sticky" backgroundColor={colors.primary[6000]} height="10%">
+      <Box display="flex" alignItems="center" justifyContent="space-between" p={2} position="sticky" backgroundColor={colors.primary[6000]} height="9.5vh">
         {/* Logo */}
-        <Box display={{ xs: 'none', md: 'block' }}>
-          <img src="/logo.jpeg" alt="Logo" width="100px" height="50px" style={{ margin: '0 10px', objectFit: 'cover' }} />
+        <Box display={{ xs: 'block', md: 'block' }}>
+          <img src="/logo.jpeg" alt="Logo" minWidth="20px" height="50px" style={{ margin: '0 10px', objectFit: 'cover' }} />
         </Box>
 
         <Box display="flex" alignItems="center">

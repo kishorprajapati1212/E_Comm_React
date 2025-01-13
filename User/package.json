@@ -20,6 +20,7 @@
     "@react-three/drei": "^9.115.0",
     "@react-three/fiber": "^8.17.10",
     "@reduxjs/toolkit": "^2.3.0",
+    "@rive-app/react-canvas": "^4.17.5",
     "@stripe/react-stripe-js": "^2.8.1",
     "@stripe/stripe-js": "^3.5.0",
     "@testing-library/jest-dom": "^5.17.0",
