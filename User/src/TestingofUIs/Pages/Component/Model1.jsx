@@ -11,7 +11,7 @@ import { useFrame } from "@react-three/fiber";
 // }
 
 export function Model1({ hovered, ...props }) {
-    const fbxModel = useFBX("/Model/test2.fbx");
+    const fbxModel = useFBX("/Model/test3.fbx");
     const group = useRef();
 
     useFrame(() => {

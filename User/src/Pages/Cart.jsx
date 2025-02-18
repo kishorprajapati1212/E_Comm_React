@@ -103,19 +103,19 @@ const Cart = () => {
                                 <Box key={items._id} sx={{ display: 'flex', alignItems: 'center', borderBottom: `1px solid ${colors.grey[100]}`, p: 2 }}>
                                     {/* Your cart item details */}
                                     <Box>
-                                        {items.img1 ? <img src={items.img1} width="120vh" height="80vh" alt={items.product_name} />
+                                        {items.img1 ? <img src={items.img1} width="120vh" height="100vh" alt={items.product_name} />
                                             : <ShoppingCartOutlinedIcon sx={{ fontSize: 40, mr: 2 }} />}
                                     </Box>
-                                    <Box sx={{ flexGrow: 1, ml: '10px' }}>
-                                        <Typography variant='h4'>{items.product_name}</Typography>
-                                        <Typography variant='h4'>{items.price}</Typography>
+                                    <Box sx={{ flexGrow: 1, ml: '10px', }}>
+                                        <Typography variant='h4' sx={{lineHeight:1}}>{items.product_name.toUpperCase()}</Typography>
+                                        <Typography variant='h4'>₹{items.price}</Typography>
                                     </Box>
                                     <Box>
                                         <Typography variant='p'>Quntity:</Typography>
                                         <IconButton onClick={() => handleqty(items._id, items.qty - 1)}>-</IconButton>
                                         <Typography variant='p'>{items.qty}</Typography>
                                         <IconButton onClick={() => handleqty(items._id, items.qty + 1)}>+</IconButton>
-                                        <IconButton onClick={() => handledelete(items._id)}>
+                                        <IconButton onClick={() => handledelete(items._id)} sx={{color:"red",}}>
                                             <DeleteIcon />
                                         </IconButton>
                                     </Box>
@@ -126,7 +126,7 @@ const Cart = () => {
                 </Box>
                 <Box sx={{ textAlign: 'right' }}>
                     <Typography variant='h4' sx={{ mr: 4 }}>Total Price:</Typography>
-                    <Typography variant='h2' sx={{ color: colors.grey[400], mr: '20px' }}>{`$${totalPrice.toFixed(2)}`}</Typography>
+                    <Typography variant='h2' sx={{ color: colors.grey[400], mr: '20px' }}>{`₹${totalPrice.toFixed(2)}`}</Typography>
                     <Button onClick={handleconfirmorder} variant="contained" size="large" sx={{
                         mt: 1, mb: 2, backgroundColor: colors.greenAccent[500],
                         '&:hover': {

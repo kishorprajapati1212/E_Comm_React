@@ -65,7 +65,7 @@ const Viewproduct = () => {
         }
 
         loadModel(fbxBuffer, containerRef.current);
-        console.log(loadModel)
+        // console.log(loadModel)
         setLoading(false);
       } catch (error) {
         console.error('Error loading model:', error.message);
@@ -96,32 +96,32 @@ const Viewproduct = () => {
     }
   };
 
-  const handleSubmitReview = async () => {
-    try {
-      if (!userid) {
-        navigate('/login');
-        return;
-      }
+  // const handleSubmitReview = async () => {
+  //   try {
+  //     if (!userid) {
+  //       navigate('/login');
+  //       return;
+  //     }
 
-      const reviewData = { userid, productid: _id, review, rating };
-      const response = await fetch(`${Backend_url}/addreview`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(reviewData),
-      });
+  //     const reviewData = { userid, productid: _id, review, rating };
+  //     const response = await fetch(`${Backend_url}/addreview`, {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify(reviewData),
+  //     });
 
-      if (response.ok) {
-        setAlertMessage({ message: 'Review submitted successfully', severity: 'success', open: true });
-        setReview('');
-        setRating(0);
-      } else {
-        throw new Error('Failed to submit review');
-      }
-    } catch (error) {
-      console.error('Error submitting review:', error);
-      setAlertMessage({ message: 'Failed to submit review', severity: 'error', open: true });
-    }
-  };
+  //     if (response.ok) {
+  //       setAlertMessage({ message: 'Review submitted successfully', severity: 'success', open: true });
+  //       setReview('');
+  //       setRating(0);
+  //     } else {
+  //       throw new Error('Failed to submit review');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error submitting review:', error);
+  //     setAlertMessage({ message: 'Failed to submit review', severity: 'error', open: true });
+  //   }
+  // };
 
   return (
     <>
@@ -206,7 +206,7 @@ const Viewproduct = () => {
               precision={0.5}
               style={{ marginBottom: '10px' }}
             />
-            <TextField
+            {/* <TextField
               value={review}
               onChange={(e) => setReview(e.target.value)}
               multiline
@@ -218,7 +218,7 @@ const Viewproduct = () => {
             />
             <Button variant="contained" color="primary" onClick={handleSubmitReview}>
               Submit Review
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>

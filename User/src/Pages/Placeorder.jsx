@@ -118,10 +118,10 @@ const Placeorder = () => {
                                         </Grid>
                                         <Grid item>
                                             <Typography fontSize='20px'>Product Name: {item.product_name}</Typography>
-                                            <Typography>Price: ${item.price}</Typography>
+                                            <Typography>Price: ₹{item.price}</Typography>
                                             <Typography>Charges: {charges}</Typography>
                                             <Typography>Quantity: {item.qty}</Typography>
-                                            <Typography>Total Price: ${item.price + charges}</Typography>
+                                            <Typography>Total Price: ₹{item.price + charges}</Typography>
                                         </Grid>
                                     </Grid>
                                 ))}
@@ -157,7 +157,7 @@ const Placeorder = () => {
                                     <Typography>{formData?.state}</Typography>
                                     <Typography>{formData?.city}</Typography>
                                     <Typography>{formData?.street}</Typography>
-                                    <Typography>${totalAmount()}</Typography>
+                                    <Typography>₹{totalAmount()}</Typography>
                                 </Grid>
                             </Grid>
 
