@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const stripe = require('stripe')('sk_test_51P8h7jSDGOWUAXLshl5LG3IC8uWqOdRIVk04VGpywpmilckZTK6nhYVEVtAilUyYTlxgl5rnVibcnW2z2Z78tgEs00Rc5MKDOH');
+require("dotenv").config();
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const Payment = require("../Models/Payment");
 
 router.post("/checkout", async (req, res) => {

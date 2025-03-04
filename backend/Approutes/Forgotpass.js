@@ -1,4 +1,5 @@
 const express = require("express")
+require("dotenv").config();
 const forgotpassmodel = require("../Models/Forgotpassmodel");
 const signmodel = require("../Models/userlogin")
 const nodemailer = require('nodemailer');
@@ -33,14 +34,14 @@ router.post("/sendmail", async (req, res) => {
         let transporter = nodemailer.createTransport({
             service: 'Gmail',
             auth: {
-                user: 'kjhgfdsa1014@gmail.com', // Your Gmail email address
-                pass: 'lczr felm afkq dwuw' // Your Gmail password or App Password
+                user: process.env.EMAIL_USER, // Your Gmail email address
+                pass: process.env.EMAIL_PASS // Your Gmail password or App Password
             }
         });
 
         // Define email options
         let mailOptions = {
-            from: 'kjhgfdsa1014@gmail.com', // Sender email address
+            from: process.env.EMAIL_USER, // Sender email address
             to: email, // Recipient email address
             subject: "Forgot Password OTP", // Subject line
             html: `
