@@ -6,7 +6,8 @@ const Payment = require("../Models/Payment");
 
 router.post("/checkout", async (req, res) => {
     try {
-        const url = "https://9000-idx-ecomcustomerp1-1730199568780.cluster-qpa6grkipzc64wfjrbr3hsdma2.cloudworkstations.dev";
+        const url = "https://user-ecom.netlify.app";
+        const url2 = "https://9000-idx-ecomcustomerp1-1730199568780.cluster-qpa6grkipzc64wfjrbr3hsdma2.cloudworkstations.dev";
         const { amount, userid, orderproduct, orderdetails } = req.body;
 
         const savepayment = await Payment.create({
